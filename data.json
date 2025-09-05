@@ -1,0 +1,48 @@
+{
+  "xp": 21,
+  "level": 4,
+  "tasks": [
+    {
+      "description": "walk to child",
+      "size": "medium",
+      "xp": 10,
+      "completed": true
+    },
+    {
+      "description": "fix the cupbored",
+      "size": "medium",
+      "xp": 10,
+      "completed": true
+    },
+    {
+      "description": "change car battery",
+      "size": "large",
+      "xp": 20,
+      "completed": true
+    },
+    {
+      "description": "buy some coffee",
+      "size": "small",
+      "xp": 5,
+      "completed": true
+    },
+    {
+      "description": "code 3 pages",
+      "size": "medium",
+      "xp": 10,
+      "completed": true
+    },
+    {
+      "description": "read 1 chapter",
+      "size": "large",
+      "xp": 20,
+      "completed": true
+    },
+    {
+      "description": "add new feature the daily quest",
+      "size": "large",
+      "xp": 20,
+      "completed": true
+    }
+  ]
+}
