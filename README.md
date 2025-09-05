@@ -16,3 +16,24 @@ Complete quests to earn XP, level up, and grow your character (Warrior, Mage, Ra
    ```bash
    git clone https://github.com/Kylar-V/Daily-Quest-0.1.git
    cd Daily-Quest-0.1
+Make sure you have Node.js installed (v18+ recommended).
+
+Run the app:
+
+bash
+Copy code
+npm install
+npm run start
+🚧 Roadmap
+Web UI (React + Vite) with localStorage
+
+Import/export save files
+
+Milestone rewards and streaks
+
+Avatars/skins per class
+
+Visual polish (progress bar, quest icons, themes)
+
+📜 License
+MIT
