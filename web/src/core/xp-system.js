@@ -1,5 +1,5 @@
 // src/xp-system.js
-import { storage } from "./storage/index.js";
+import { storage } from "../storage/index.js";
 
 // ===== Constants =====
 export const MAX_LEVEL = 100;
