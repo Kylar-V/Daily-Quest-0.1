@@ -20,11 +20,15 @@ Make sure you have Node.js installed (v18+ recommended).
 
 Run the app:
 
-bash
-Copy code
-npm install
-npm run start
+"""npm install"""
+
+"""npm run start"""
+
+
+
 🚧 Roadmap
+
+
 Web UI (React + Vite) with localStorage
 
 Import/export save files
