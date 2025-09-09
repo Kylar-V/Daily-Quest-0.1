@@ -31,7 +31,10 @@ export default function QuestLog() {
         </div>
       )}
 
-      <button className="fab" onClick={() => nav("/new")} aria-label="Add quest">＋</button>
+      <button className="fab" onClick={() => nav("/new")} aria-label="Add quest" title="Add New Quest">
+  Add Quest
+</button>
+
     </div>
   );
 }
