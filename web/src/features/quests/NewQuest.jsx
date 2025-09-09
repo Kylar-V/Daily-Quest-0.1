@@ -1,5 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
+import { addQuest } from "../../api/storage";
 
 export default function NewQuest() {
   const nav = useNavigate();
@@ -11,9 +12,7 @@ export default function NewQuest() {
   function handleCreate() {
     if (!title.trim()) return;
 
-    const s = JSON.parse(localStorage.getItem("dq:v1") || "{}");
-    const quests = s.quests || [];
-    quests.push({
+    addQuest({
       id: "q_" + Math.random().toString(36).slice(2),
       title: title.trim(),
       desc: desc.trim(),
@@ -22,8 +21,6 @@ export default function NewQuest() {
       done: false,
       createdAt: Date.now()
     });
-    s.quests = quests;
-    localStorage.setItem("dq:v1", JSON.stringify(s));
 
     nav("/log");
   }

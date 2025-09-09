@@ -1,11 +1,12 @@
 import { Link } from "react-router-dom";
+import { getHero, getStats } from "../../api/storage";
 
 export default function CharacterProfile() {
-  const s = JSON.parse(localStorage.getItem("dq:v1") || "{}");
-  const hero = s.hero || { name: "Adventurer", class: "Wizard" };
-  const stats = s.stats || { xp: 0, level: 1, hp: 100, maxHp: 100 };
+  const hero = getHero() || { name: "Adventurer", class: "Wizard" };
+  const stats = getStats();
 
-  const xpPct = Math.max(0, Math.min(100, (stats.xp % 100))); // placeholder until xp-system is wired
+  // Placeholder: XP bar shows progress within the current 100-XP band
+  const xpPct = Math.max(0, Math.min(100, stats.xp % 100));
 
   return (
     <div className="page">
@@ -34,7 +35,10 @@ export default function CharacterProfile() {
       <div className="card">
         <div className="muted">HP</div>
         <div className="bar">
-          <div className="bar-fill bar-fill--hp" style={{ width: `${Math.round((stats.hp / (stats.maxHp || 1)) * 100)}%` }} />
+          <div
+            className="bar-fill bar-fill--hp"
+            style={{ width: `${Math.round((stats.hp / (stats.maxHp || 1)) * 100)}%` }}
+          />
         </div>
       </div>
 

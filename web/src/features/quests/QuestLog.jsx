@@ -1,14 +1,15 @@
 import { Link, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
+import { getQuests } from "../../api/storage";
+import QuestCard from "./QuestCard";
 
 export default function QuestLog() {
   const nav = useNavigate();
   const [quests, setQuests] = useState([]);
 
-  useEffect(() => {
-    const s = JSON.parse(localStorage.getItem("dq:v1") || "{}");
-    setQuests(s.quests || []);
-  }, []);
+  function refresh(){ setQuests(getQuests()); }
+
+  useEffect(() => { refresh(); }, []);
 
   return (
     <div className="page">
@@ -25,14 +26,7 @@ export default function QuestLog() {
       ) : (
         <div className="list">
           {quests.map((q) => (
-            <div key={q.id} className={`card ${q.done ? "card--done" : ""}`}>
-              <div className="card-title">{q.title}</div>
-              {q.desc && <div className="card-desc">{q.desc}</div>}
-              <div className="row">
-                <span>XP: {q.xp ?? 0}</span>
-                <span>HP: {q.hp ?? 0}</span>
-              </div>
-            </div>
+            <QuestCard key={q.id} q={q} onUpdated={refresh} />
           ))}
         </div>
       )}

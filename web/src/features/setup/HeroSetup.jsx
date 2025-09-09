@@ -1,5 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
+import { setHero } from "../../api/storage";
 
 export default function HeroSetup() {
   const nav = useNavigate();
@@ -7,9 +8,7 @@ export default function HeroSetup() {
   const [klass, setKlass] = useState("Wizard");
 
   function handleBegin() {
-    const s = JSON.parse(localStorage.getItem("dq:v1") || "{}");
-    s.hero = { name: name.trim() || "Adventurer", class: klass };
-    localStorage.setItem("dq:v1", JSON.stringify(s));
+    setHero({ name: name.trim() || "Adventurer", class: klass });
     nav("/log");
   }
 
