@@ -2,6 +2,13 @@ import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { setHero } from "../../api/storage";
 
+const CLASS_DESCRIPTIONS = {
+  Knight: "Thrive on epic challenges. Large quests grant bonus XP.",
+  Wizard: "Knowledge grows through consistency. Daily streaks grant bonus XP.",
+  Rogue:  "Masters of quick wins. Completing several quests a day grants bonus XP.",
+  Archer: "Precise and focused. Medium quests grant bonus XP.",
+};
+
 export default function HeroSetup() {
   const nav = useNavigate();
   const [name, setName] = useState("");
@@ -38,7 +45,15 @@ export default function HeroSetup() {
         ))}
       </div>
 
-      <button className="cta" onClick={handleBegin}>Begin Adventure</button>
+      <div className="card" style={{ marginTop: 8 }}>
+        <div className="muted">Class Bonus</div>
+        <div>{CLASS_DESCRIPTIONS[klass]}</div>
+      </div>
+
+      {/* Centered CTA */}
+      <button className="cta block" onClick={handleBegin}>
+        Begin Adventure
+      </button>
     </div>
   );
 }
