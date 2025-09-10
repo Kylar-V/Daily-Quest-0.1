@@ -1,140 +1,136 @@
+/* ===== Theme ===== */
 :root{
-  --bg1:#221647;
-  --bg2:#3b2875;
-  --card:rgba(255,255,255,0.06);
-  --text:#f4f4fa;
-  --muted:#bdb8d8;
-  --accent:#ff9f1c;
-  --accent-2:#ffd166;
+  --bg1:#1e153e;
+  --bg2:#37256f;
+  --text:#f7f7fb;
+  --muted:#cfc9e6;
+
+  --accent:#ff9f1c;   /* XP / CTA (orange) */
+  --accent-2:#ffd166; /* links / secondary */
+
+  --card:rgba(255,255,255,0.07);
 }
 
-html,body,#root{ height:100%; }
+/* ===== Base ===== */
+html, body, #root { height:100%; }
 body{
   margin:0;
-  background: linear-gradient(180deg, var(--bg1), var(--bg2));
+  background: linear-gradient(180deg,
+    #2a1f55 0%,
+    #3b2a75 50%,
+    #4b2f91 100%
+  );
   color: var(--text);
   font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, "Apple Color Emoji","Segoe UI Emoji";
 }
+button, input, textarea, select { font-family: inherit; color: inherit; }
 
-/* App shell + page centering (phone-like width) */
-.app-shell{ min-height:100%; padding-bottom: 64px; } /* space for bottom nav */
-.page{
-  max-width: 480px;     /* centered, mobile feel */
-  margin: 0 auto;
-  padding: 20px;
-}
+/* ===== App shell & page ===== */
+.app-shell{ min-height:100%; padding-bottom: 80px; } /* room for bottom nav */
+.page{ max-width: 480px; margin: 0 auto; padding: 20px 20px 120px; }
 
-/* Headings / header bar */
-h1{ margin:0 0 16px; }
+/* Top header matching bottom nav style */
 .header{
-  display:flex; justify-content:space-between; align-items:center;
-  margin-bottom:16px;
-  padding: 0 12px; /* breathing room */
+  position: sticky; top: 0; z-index: 20;
+  height: 64px;
+  display:flex; align-items:center; justify-content:space-between;
+  padding: 0 16px; margin: 0 0 16px;
+  background: rgba(0,0,0,0.35); backdrop-filter: blur(8px);
+  border-bottom:1px solid rgba(255,255,255,0.10);
 }
+.header-actions{ display:flex; align-items:center; gap:12px; }
 
-/* Labels & inputs */
+.page > .header:first-child { margin-top: -10px; padding-top: 18px; }
+
+/* ===== Labels & Inputs ===== */
+h1{ margin:0 0 16px; font-size: 1.5rem; }
 .label{ display:block; margin:16px 0 8px; color:var(--muted); font-size:14px; }
 
 .input{
-  width:100%; padding:12px 14px;
-  border-radius:12px; border:1px solid transparent;
-  background: rgba(255,255,255,0.08);
-  color:var(--text); outline:none;
-  appearance: none;
+  width:100%; padding:12px 14px; border-radius:12px; border:1px solid transparent;
+  background: rgba(255,255,255,0.10); color:var(--text); outline:none;
 }
 .input:focus{ border-color: var(--accent); }
 
-/* Themed <select> using the same .input class */
-select.input{
-  background: rgba(255,255,255,0.08);
-  color: var(--text);
-  border-radius: 12px;
-  border: 1px solid transparent;
-  padding: 12px 14px;
-}
-select.input:focus{ border-color: var(--accent); }
+/* Themed select */
+select.input{ appearance: none; }
 
-/* Grid chips (class choice, task size) */
+/* ===== Grid chips (class pick, task size) ===== */
 .grid{ display:grid; grid-template-columns: repeat(4, minmax(0,1fr)); gap:8px; margin:8px 0 16px; }
-@media (max-width: 480px){
-  .grid{ grid-template-columns: repeat(2, minmax(0,1fr)); }
-}
+@media (max-width: 480px){ .grid{ grid-template-columns: repeat(2, minmax(0,1fr)); } }
 .chip{
-  padding:10px 12px; border-radius:12px;
-  background: rgba(255,255,255,0.08); border:1px solid transparent;
-  color:var(--text); cursor:pointer;
+  padding:10px 12px; border-radius:12px; border:1px solid transparent;
+  background: rgba(255,255,255,0.08); color:var(--text); cursor:pointer;
 }
 .chip--active{ border-color: var(--accent); background: rgba(255, 159, 28, 0.15); }
 
-/* Layout utilities */
+/* ===== Layout helpers ===== */
 .row{ display:flex; gap:12px; align-items:center; justify-content:space-between; margin-top:12px; }
 .col{ flex:1; }
-
-/* Buttons */
-.btn, .cta{
-  font-size: 16px;
-  padding:12px 16px; border-radius:14px;
-  border:1px solid transparent; cursor:pointer;
-  color:var(--text);
-}
-.btn{
-  background: rgba(255,255,255,0.08);
-}
-.btn.danger{
-  border-color:#e85c5c; background: rgba(232,92,92,0.12);
-}
-.cta{
-  background: var(--accent);
-  color:#1b123b; font-weight:800; letter-spacing:0.3px;
-  border:none;
-}
-
-/* Links */
-.link{ color: var(--accent-2); text-decoration: none; }
-
-/* Empty state + text helpers */
-.empty{ text-align:center; margin:40px 0; }
 .muted{ color:var(--muted); }
 .big{ font-size:32px; font-weight:700; }
+.empty{ text-align:center; margin:40px 0; }
 
-/* Lists & cards (spaced and shadowed) */
-.list{ display:grid; gap:12px; }
-.card{
-  padding:18px; border-radius:16px; background: var(--card);
-  border: 1px solid rgba(255,255,255,0.08);
-  box-shadow: 0 8px 24px rgba(0,0,0,0.22);
-  margin-bottom: 16px; /* extra spacing between cards */
+/* ===== Buttons ===== */
+.btn, .cta{
+  font-size: 16px; padding:12px 16px; border-radius:14px; border:1px solid transparent; cursor:pointer;
 }
-.card--done{ opacity:0.6; }
+.btn{
+  background: rgba(255,255,255,0.10); color:var(--text);
+}
+.btn:hover{ background: rgba(255,255,255,0.16); }
+
+/* Restored "danger" style (Reset Data button) */
+.btn.danger{
+  border-color:#e85c5c;
+  background: rgba(232,92,92,0.12);
+  color: #ffdada;
+}
+
+/* Primary CTA (orange) */
+.cta{
+  background: var(--accent); color:#1b123b; font-weight:800; letter-spacing:0.3px; border:none;
+}
+.cta:hover{ filter: brightness(1.05); }
+
+/* Centered CTA helper (used on Begin Adventure) */
+.cta.block{ display:block; margin:16px auto 0; text-align:center; min-width:220px; }
+
+/* ===== Cards & List spacing ===== */
+.list{ display:grid; gap:14px; }          /* 1) a little extra padding between quests */
+.card{
+  padding:16px; border-radius:16px; background: var(--card);
+  border: 1px solid rgba(255,255,255,0.12);
+  box-shadow: 0 8px 24px rgba(0,0,0,0.22);
+}
+.card + .card{ margin-top: 2px; }         /* subtle separation line feel */
 .card-title{ font-weight:700; }
 .card-desc{ color:var(--muted); margin-top:6px; }
+.card--done{ opacity:0.75; }
 
-/* Bars */
+/* ===== Progress bars (thinner) ===== */
 .bar{
-  height:12px; border-radius:999px;
+  height:12px;                              /* 6) thinner bars */
+  border-radius:999px;
   background: rgba(255,255,255,0.12);
   overflow:hidden;
 }
 .bar-fill{
   height:100%;
   background: linear-gradient(90deg, #43cea2, #ff9f1c);
-  transition: width 220ms ease;   /* NEW: smooth fill */
+  transition: width 220ms ease;
 }
+.bar-fill--hp{ background:#c0392b; }       /* deeper red HP bar */
 
-
-.bar-fill--hp{
-  background: linear-gradient(90deg, #8e0e00, #c0392b);
-}
- /* RED HP bar */
-
-/* Bottom nav + centered fab label */
+/* Bottom Nav */
 .bottomnav{
   position: fixed; left:0; right:0; bottom:0; height:64px;
-  display:flex; gap:16px; justify-content:center; align-items:center;
-  padding: 0 16px;
+  display:flex; align-items:center; justify-content:space-between;
+  padding: 0 12px;
   background: rgba(0,0,0,0.35); backdrop-filter: blur(8px);
-  border-top:1px solid rgba(255,255,255,0.08);
+  border-top:1px solid rgba(255,255,255,0.10);
 }
+.tabs{ display:flex; gap:12px; }
 .tab{
   color:var(--muted); text-decoration:none;
   padding:10px 16px; border-radius:12px;
@@ -142,25 +138,30 @@ select.input:focus{ border-color: var(--accent); }
 .tab--active{
   color:var(--text);
   background: rgba(255,255,255,0.12);
-  box-shadow: inset 0 0 0 1px rgba(255,255,255,0.12);
+  box-shadow: inset 0 0 0 1px rgba(255,255,255,0.10);
 }
 
-/* FAB */
+/* Small button helper (for Reset) */
+.btn.small{ padding:8px 10px; font-size:14px; border-radius:10px; }
+
+
+/* FAB (Add Quest) – bottom-right polished orange */
 .fab{
-  position: fixed; right:20px; bottom:92px;
-  min-width:110px; height:48px;
+  position: fixed;
+  right: 20px;
+  bottom: 92px; /* sits above the bottom nav */
+  min-width: 130px; height: 48px;
   display:flex; align-items:center; justify-content:center;
   border-radius:999px; border:none;
-  background: var(--accent); color:#1b123b; font-size:16px; font-weight:800;
+  background: var(--accent);
+  color:#1b123b; font-size:16px; font-weight:800;
   text-align:center; cursor:pointer;
   box-shadow: 0 8px 20px rgba(0,0,0,0.25);
 }
-.card-head{
-  display:flex; align-items:center; justify-content:space-between; gap:12px;
-}
-.badges{
-  display:flex; flex-wrap:wrap; gap:8px; margin-top:10px;
-}
+
+/* ===== Badges on quest cards ===== */
+.card-head{ display:flex; align-items:center; justify-content:space-between; gap:12px; }
+.badges{ display:flex; flex-wrap:wrap; gap:8px; margin-top:10px; }
 .badge{
   display:inline-flex; align-items:center; gap:6px;
   padding:6px 10px; border-radius:999px;
@@ -172,12 +173,27 @@ select.input:focus{ border-color: var(--accent); }
 .badge--done{
   background: rgba(88, 214, 141, 0.18);
   border-color: rgba(88, 214, 141, 0.35);
-  color: #c9f7de;
-  font-weight: 700;
+  color: #c9f7de; font-weight: 700;
 }
-/* Center a call-to-action button on its own row */
-.cta.block{
-  display: block;
-  margin: 16px auto 0;
-  text-align: center;
+
+/* ===== Toasts (XP gain) ===== */
+.toast-container{
+  position: fixed; left:50%; transform: translateX(-50%);
+  bottom: 120px; z-index: 9999;
+  display:flex; flex-direction:column; gap:8px;
+  pointer-events: none;
+}
+.toast{
+  background: rgba(0,0,0,0.55);
+  border:1px solid rgba(255,255,255,0.15);
+  backdrop-filter: blur(8px);
+  color: var(--text);
+  padding: 10px 14px; border-radius: 12px;
+  font-weight: 700;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.25);
+  animation: toast-in 160ms ease-out;
+}
+@keyframes toast-in{
+  from{ opacity:0; transform: translate(-50%, 8px) }
+  to{   opacity:1; transform: translate(-50%, 0) }
 }
